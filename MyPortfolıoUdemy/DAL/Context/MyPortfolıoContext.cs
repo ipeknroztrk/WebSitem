@@ -1,24 +1,16 @@
 using System;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using MyPortfolıoUdemy.DAL.Entities;
 
 namespace MyPortfolıoUdemy.DAL.Context
 {
-	public class MyPortfolıoContext:DbContext
-	{
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    public class MyPortfolıoContext : DbContext
+    {
+        public MyPortfolıoContext(DbContextOptions<MyPortfolıoContext> options) : base(options)
         {
-            var host = Environment.GetEnvironmentVariable("PGHOST") ?? "localhost";
-            var port = Environment.GetEnvironmentVariable("PGPORT") ?? "5432";
-            var database = Environment.GetEnvironmentVariable("PGDATABASE") ?? "MyPortfolıoDb";
-            var username = Environment.GetEnvironmentVariable("PGUSER") ?? "postgres";
-            var password = Environment.GetEnvironmentVariable("PGPASSWORD") ?? "12345678";
-            
-            var connectionString = $"Host={host};Port={port};Database={database};Username={username};Password={password};SSL Mode=Require;Trust Server Certificate=true";
-            
-            optionsBuilder.UseNpgsql(connectionString);
         }
-        
+
         public DbSet<About> Abouts { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Experience> Experiences { get; set; }
