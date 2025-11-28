@@ -1,0 +1,72 @@
+﻿<Properties StartupConfiguration="{1331C32A-AD3A-49B0-8B98-489476337B67}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/ExperienceController.cs">
+    <Files>
+      <File FileName="Views/ToDoList/Index.cshtml" />
+      <File FileName="Views/Statistic/Index.cshtml" />
+      <File FileName="Views/Shared/Components/_ContactComponentPartial/Default.cshtml" />
+      <File FileName="Views/Contact/ContactList.cshtml" />
+      <File FileName="Views/Shared/Components/_FooterComponentPartial/Default.cshtml" />
+      <File FileName="ViewComponents/_ExperienceComponentPartial.cs" />
+      <File FileName="Controllers/MessageController.cs" />
+      <File FileName="ViewComponents/_FeatureComponentPartial.cs" />
+      <File FileName="DAL/Context/MyPortfolıoContext.cs" />
+      <File FileName="DAL/Entities/Message.cs" />
+      <File FileName="Controllers/StatisticController.cs" />
+      <File FileName="Program.cs" />
+      <File FileName="Views/Default/Index.cshtml" />
+      <File FileName="Controllers/DefaultController.cs" />
+      <File FileName="ViewComponents/LayoutViewComponents/_LayoutHeadComponentPartial.cs" />
+      <File FileName="ViewComponents/LayoutViewComponents/_LayoutNavbarComponentPartial.cs" />
+      <File FileName="ViewComponents/LayoutViewComponents/_LayoutScriptComponentPartial.cs" />
+      <File FileName="ViewComponents/_AboutComponentPartial.cs" />
+      <File FileName="ViewComponents/_NavbarComponentPartial.cs" />
+      <File FileName="Views/Shared/Components/_AboutComponentPartial/Default.cshtml" />
+      <File FileName="ViewComponents/_HeadComponentPartial.cs" />
+      <File FileName="Views/Shared/Components/_LayoutHeadComponentPartial/Default.cshtml" />
+      <File FileName="Views/Shared/Components/_LayoutNavbarComponentPartial/Default.cshtml" />
+      <File FileName="ViewComponents/_ContactComponentPartial.cs" />
+      <File FileName="Views/Layout/Index.cshtml" />
+      <File FileName="Views/Login/Index.cshtml" />
+      <File FileName="Controllers/LoginController.cs" />
+      <File FileName="Controllers/LayoutController.cs" />
+      <File FileName="DAL/Entities/Admin.cs" />
+      <File FileName="DAL/Entities/About.cs" />
+      <File FileName="Controllers/AboutController.cs" />
+      <File FileName="Controllers/ContactController.cs" />
+      <File FileName="Controllers/ExperienceController.cs" Line="14" Column="51" />
+      <File FileName="ViewComponents/_TestimonialComponentPartial.cs" />
+      <File FileName="ViewComponents/LayoutViewComponents/_LayoutSidebarComponentPartial.cs" />
+      <File FileName="appsettings.json" />
+      <File FileName="ViewComponents/_FooterComponentPartial.cs" />
+      <File FileName="Controllers/HomeController.cs" />
+      <File FileName="Controllers/FeatureController.cs" />
+      <File FileName="Controllers/PortfolıoController.cs" />
+      <File FileName="Views/Portfolıo/PortfolıoList.cshtml" />
+      <File FileName="DAL/Entities/SocialMedia.cs" />
+      <File FileName="Views/Shared/Components/_TestimonialComponentPartial/Default.cshtml" />
+      <File FileName="Views/Shared/Components/_LayoutSidebarComponentPartial/Default.cshtml" />
+      <File FileName="Views/Portfolıo/CreatePortfolıo.cshtml" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="MyPortfolıoUdemy" expanded="True" selected="True">
+            <Node name="MyPortfolıoUdemy" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="ToDoList" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.MyPortfolıoUdemy PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+</Properties>
