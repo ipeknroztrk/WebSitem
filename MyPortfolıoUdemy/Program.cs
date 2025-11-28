@@ -9,7 +9,6 @@ builder.Services.AddControllersWithViews();
 // PostgreSQL bağlantısı
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-// Railway environment variables varsa onları kullan
 var pgHost = Environment.GetEnvironmentVariable("PGHOST");
 if (!string.IsNullOrEmpty(pgHost))
 {
@@ -25,6 +24,13 @@ builder.Services.AddDbContext<MyPortfolıoContext>(options =>
     options.UseNpgsql(connectionString));
 
 var app = builder.Build();
+
+// BURAYA EKLE - Otomatik migration
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<MyPortfolıoContext>();
+    db.Database.Migrate();
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
