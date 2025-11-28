@@ -1,6 +1,5 @@
 using System;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using MyPortfolıoUdemy.DAL.Entities;
 
 namespace MyPortfolıoUdemy.DAL.Context
