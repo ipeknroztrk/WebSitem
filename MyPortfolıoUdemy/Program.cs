@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using MyPortfolio.DAL; // kendi namespace'ine göre düzenle
+using MyPortfolioUdemy.DAL.Context;  // DOĞRU
 using Npgsql;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
