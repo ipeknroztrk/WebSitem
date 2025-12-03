@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
-using MyPortfolıoUdemy.DAL.Entities;
+using MyPortfolioUdemy.DAL.Entities;
 using System;
 
-namespace MyPortfolıoUdemy.DAL.Context
+namespace MyPortfolioUdemy.DAL.Context
 {
-    public class MyPortfolıoContext : DbContext
+    public class MyPortfolioContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -14,7 +14,7 @@ namespace MyPortfolıoUdemy.DAL.Context
             {
                 Console.WriteLine("Using Render DATABASE_URL");
 
-                // Render URL → EF Core bağlantı formatına çevrilir
+                // Render URL → EF Core formatına çevrilir
                 var uri = new Uri(databaseUrl.Replace("postgres://", "https://"));
 
                 string host = uri.Host;
@@ -32,7 +32,7 @@ namespace MyPortfolıoUdemy.DAL.Context
             else
             {
                 Console.WriteLine("Using LOCAL connection");
-                optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=MyPortfolıoDb;Username=postgres;Password=12345678;");
+                optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=MyPortfolioDb;Username=postgres;Password=12345678;");
             }
         }
 
@@ -41,11 +41,11 @@ namespace MyPortfolıoUdemy.DAL.Context
         public DbSet<Experience> Experiences { get; set; }
         public DbSet<Feature> Features { get; set; }
         public DbSet<Message> Messages { get; set; }
-        public DbSet<Portfolıo> Portfolıos { get; set; }
+        public DbSet<Portfolio> Portfolios { get; set; }
         public DbSet<Skill> Skills { get; set; }
-        public DbSet<SocialMedia> socialMedias { get; set; }
+        public DbSet<SocialMedia> SocialMedias { get; set; }
         public DbSet<Testimonial> Testimonials { get; set; }
         public DbSet<ToDoList> ToDoLists { get; set; }
-        public DbSet<Admin> admins { get; set; }
+        public DbSet<Admin> Admins { get; set; }
     }
 }
