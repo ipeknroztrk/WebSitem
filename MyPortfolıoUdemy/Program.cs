@@ -21,4 +21,9 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=About}/{action=AboutList}/{id?}");
 
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<MyPortfolıoContext>();
+    db.Database.Migrate();
+}
 app.Run();
