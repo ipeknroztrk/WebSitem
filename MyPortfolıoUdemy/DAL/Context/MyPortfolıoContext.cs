@@ -8,18 +8,21 @@ namespace MyPortfolıoUdemy.DAL.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // Önce DATABASE_URL'i kontrol et (Render için en güvenilir)
+            // DATABASE_URL'i kontrol et
             var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
+            
+            // DEBUG: Hangi connection kullanıldığını görmek için
+            Console.WriteLine($"DATABASE_URL: {(string.IsNullOrEmpty(databaseUrl) ? "EMPTY" : "EXISTS")}");
             
             if (!string.IsNullOrEmpty(databaseUrl))
             {
-                // DATABASE_URL kullan
+                Console.WriteLine("Using DATABASE_URL connection");
                 optionsBuilder.UseNpgsql(databaseUrl);
             }
             else
             {
-                // Railway/Render PG variables
                 var pgHost = Environment.GetEnvironmentVariable("PGHOST");
+                Console.WriteLine($"PGHOST: {pgHost ?? "EMPTY"}");
                 
                 if (!string.IsNullOrEmpty(pgHost))
                 {
@@ -28,12 +31,13 @@ namespace MyPortfolıoUdemy.DAL.Context
                     var pgUser = Environment.GetEnvironmentVariable("PGUSER");
                     var pgPassword = Environment.GetEnvironmentVariable("PGPASSWORD");
                     
+                    Console.WriteLine($"Using PG variables: Host={pgHost}");
                     var connectionString = $"Host={pgHost};Port={pgPort};Database={pgDatabase};Username={pgUser};Password={pgPassword};SSL Mode=Require;Trust Server Certificate=true";
                     optionsBuilder.UseNpgsql(connectionString);
                 }
                 else
                 {
-                    // Local'de
+                    Console.WriteLine("Using LOCAL connection");
                     optionsBuilder.UseNpgsql("Server=localhost;Port=5432;Database=MyPortfolıoDb;User Id=postgres;Password=12345678;");
                 }
             }
