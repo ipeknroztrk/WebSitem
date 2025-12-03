@@ -1,60 +1,58 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using MyPortfolıoUdemy.DAL.Context;
-using MyPortfolıoUdemy.DAL.Entities;
+using MyPortfolioUdemy.DAL.Context;   // namespace'i de i ile düzelt
+using MyPortfolioUdemy.DAL.Entities;  // namespace'i de i ile düzelt
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
-namespace MyPortfolıoUdemy.Controllers
+namespace MyPortfolioUdemy.Controllers
 {
-    public class PortfolıoController : Controller
+    public class PortfolioController : Controller
     {
-        MyPortfolıoContext context = new MyPortfolıoContext();
-        // GET: /<controller>/
-        public IActionResult PortfolıoList()
+        MyPortfolioContext context = new MyPortfolioContext();
+
+        public IActionResult PortfolioList()
         {
-            var values = context.Portfolıos.ToList();
+            var values = context.Portfolios.ToList();
             return View(values);
         }
 
-        [HttpGet] //sayfa yüklenince çalışıcak
-        public IActionResult CreatePortfolıo()
+        [HttpGet]
+        public IActionResult CreatePortfolio()
         {
             return View();
         }
 
-        [HttpPost] //sayfa da bir butona tıklanınca 
-        public IActionResult CreatePortfolıo(Portfolıo portfolıo)
+        [HttpPost]
+        public IActionResult CreatePortfolio(Portfolio portfolio)
         {
-            context.Portfolıos.Add(portfolıo);
+            context.Portfolios.Add(portfolio);
             context.SaveChanges();
-            return RedirectToAction("PortfolıoList");
+            return RedirectToAction("PortfolioList");
         }
-        public IActionResult DeletePortfolıo(int id)
+
+        public IActionResult DeletePortfolio(int id)
         {
-            var value = context.Portfolıos.Find(id);
-            context.Portfolıos.Remove(value);
+            var value = context.Portfolios.Find(id);
+            context.Portfolios.Remove(value);
             context.SaveChanges();
-            return RedirectToAction("PortfolıoList");
+            return RedirectToAction("PortfolioList");
         }
 
         [HttpGet]
-        public IActionResult UpdatePortfolıo(int id)
+        public IActionResult UpdatePortfolio(int id)
         {
-            var value = context.Portfolıos.Find(id);
+            var value = context.Portfolios.Find(id);
             return View(value);
         }
-        [HttpPost]
-        public IActionResult UpdatePortfolıo(Portfolıo portfolıo)
-        {
-            context.Portfolıos.Update(portfolıo);
-            context.SaveChanges();
-            return RedirectToAction("PortfolıoList");
-        }
 
+        [HttpPost]
+        public IActionResult UpdatePortfolio(Portfolio portfolio)
+        {
+            context.Portfolios.Update(portfolio);
+            context.SaveChanges();
+            return RedirectToAction("PortfolioList");
+        }
     }
 }
-
