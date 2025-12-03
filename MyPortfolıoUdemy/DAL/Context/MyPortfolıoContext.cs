@@ -8,24 +8,34 @@ namespace MyPortfolıoUdemy.DAL.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // Railway environment variables varsa onları kullan
-            var pgHost = Environment.GetEnvironmentVariable("PGHOST");
+            // Önce DATABASE_URL'i kontrol et (Render için en güvenilir)
+            var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
             
-            if (!string.IsNullOrEmpty(pgHost))
+            if (!string.IsNullOrEmpty(databaseUrl))
             {
-                // Railway'de
-                var pgPort = Environment.GetEnvironmentVariable("PGPORT");
-                var pgDatabase = Environment.GetEnvironmentVariable("PGDATABASE");
-                var pgUser = Environment.GetEnvironmentVariable("PGUSER");
-                var pgPassword = Environment.GetEnvironmentVariable("PGPASSWORD");
-                
-                var connectionString = $"Host={pgHost};Port={pgPort};Database={pgDatabase};Username={pgUser};Password={pgPassword};SSL Mode=Require;Trust Server Certificate=true";
-                optionsBuilder.UseNpgsql(connectionString);
+                // DATABASE_URL kullan
+                optionsBuilder.UseNpgsql(databaseUrl);
             }
             else
             {
-                // Local'de
-                optionsBuilder.UseNpgsql("Server=localhost;Port=5432;Database=MyPortfolıoDb;User Id=postgres;Password=12345678;");
+                // Railway/Render PG variables
+                var pgHost = Environment.GetEnvironmentVariable("PGHOST");
+                
+                if (!string.IsNullOrEmpty(pgHost))
+                {
+                    var pgPort = Environment.GetEnvironmentVariable("PGPORT");
+                    var pgDatabase = Environment.GetEnvironmentVariable("PGDATABASE");
+                    var pgUser = Environment.GetEnvironmentVariable("PGUSER");
+                    var pgPassword = Environment.GetEnvironmentVariable("PGPASSWORD");
+                    
+                    var connectionString = $"Host={pgHost};Port={pgPort};Database={pgDatabase};Username={pgUser};Password={pgPassword};SSL Mode=Require;Trust Server Certificate=true";
+                    optionsBuilder.UseNpgsql(connectionString);
+                }
+                else
+                {
+                    // Local'de
+                    optionsBuilder.UseNpgsql("Server=localhost;Port=5432;Database=MyPortfolıoDb;User Id=postgres;Password=12345678;");
+                }
             }
         }
         
