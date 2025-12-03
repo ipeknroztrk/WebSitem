@@ -1,12 +1,12 @@
 using Microsoft.EntityFrameworkCore;
-using MyPortfolioUdemy.DAL.Entities;
+using MyPortfolıoUdemy.DAL.Entities;
 using System;
 
 
-namespace MyPortfolioUdemy.DAL.Context
+namespace MyPortfolıoUdemy.DAL.Context
 
 {
-    public class MyPortfolioContext : DbContext
+    public class MyPortfolıoContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
