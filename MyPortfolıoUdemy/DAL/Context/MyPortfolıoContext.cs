@@ -1,6 +1,6 @@
-using System;
 using Microsoft.EntityFrameworkCore;
 using MyPortfolıoUdemy.DAL.Entities;
+using System;
 
 namespace MyPortfolıoUdemy.DAL.Context
 {
@@ -8,41 +8,34 @@ namespace MyPortfolıoUdemy.DAL.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // DATABASE_URL'i kontrol et
             var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
-            
-            // DEBUG: Hangi connection kullanıldığını görmek için
-            Console.WriteLine($"DATABASE_URL: {(string.IsNullOrEmpty(databaseUrl) ? "EMPTY" : "EXISTS")}");
-            
+
             if (!string.IsNullOrEmpty(databaseUrl))
             {
-                Console.WriteLine("Using DATABASE_URL connection");
-                optionsBuilder.UseNpgsql(databaseUrl);
+                Console.WriteLine("Using Render DATABASE_URL");
+
+                // Render URL → EF Core bağlantı formatına çevrilir
+                var uri = new Uri(databaseUrl.Replace("postgres://", "https://"));
+
+                string host = uri.Host;
+                int port = uri.Port;
+                string db = uri.AbsolutePath.TrimStart('/');
+                string user = uri.UserInfo.Split(':')[0];
+                string pass = uri.UserInfo.Split(':')[1];
+
+                var connectionString =
+                    $"Host={host};Port={port};Database={db};Username={user};Password={pass};SSL Mode=Require;Trust Server Certificate=true";
+
+                Console.WriteLine("Converted connection string OK");
+                optionsBuilder.UseNpgsql(connectionString);
             }
             else
             {
-                var pgHost = Environment.GetEnvironmentVariable("PGHOST");
-                Console.WriteLine($"PGHOST: {pgHost ?? "EMPTY"}");
-                
-                if (!string.IsNullOrEmpty(pgHost))
-                {
-                    var pgPort = Environment.GetEnvironmentVariable("PGPORT");
-                    var pgDatabase = Environment.GetEnvironmentVariable("PGDATABASE");
-                    var pgUser = Environment.GetEnvironmentVariable("PGUSER");
-                    var pgPassword = Environment.GetEnvironmentVariable("PGPASSWORD");
-                    
-                    Console.WriteLine($"Using PG variables: Host={pgHost}");
-                    var connectionString = $"Host={pgHost};Port={pgPort};Database={pgDatabase};Username={pgUser};Password={pgPassword};SSL Mode=Require;Trust Server Certificate=true";
-                    optionsBuilder.UseNpgsql(connectionString);
-                }
-                else
-                {
-                    Console.WriteLine("Using LOCAL connection");
-                    optionsBuilder.UseNpgsql("Server=localhost;Port=5432;Database=MyPortfolıoDb;User Id=postgres;Password=12345678;");
-                }
+                Console.WriteLine("Using LOCAL connection");
+                optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=MyPortfolıoDb;Username=postgres;Password=12345678;");
             }
         }
-        
+
         public DbSet<About> Abouts { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Experience> Experiences { get; set; }
