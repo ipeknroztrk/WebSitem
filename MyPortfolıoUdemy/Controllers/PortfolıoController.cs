@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using MyPortfolioUdemy.DAL.Context;   // namespace'i de i ile düzelt
-using MyPortfolioUdemy.DAL.Entities;  // namespace'i de i ile düzelt
+using MyPortfolıoUdemy.DAL.Context;   // namespace'i de i ile düzelt
+using MyPortfolıoUdemy.DAL.Entities;  // namespace'i de i ile düzelt
 
-namespace MyPortfolioUdemy.Controllers
+namespace MyPortfolıoUdemy.Controllers
 {
     public class PortfolioController : Controller
     {
