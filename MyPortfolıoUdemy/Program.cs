@@ -1,9 +1,11 @@
 using MyPortfolıoUdemy.DAL.Context;
 using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<MyPortfolıoContext>();
 
 var app = builder.Build();
 
@@ -14,18 +16,20 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-
+app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=About}/{action=AboutList}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
+// Auto migration
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<MyPortfolıoContext>();
     db.Database.Migrate();
 }
+
 app.Run();
