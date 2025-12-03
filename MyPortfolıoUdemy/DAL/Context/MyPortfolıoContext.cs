@@ -2,7 +2,9 @@ using Microsoft.EntityFrameworkCore;
 using MyPortfolioUdemy.DAL.Entities;
 using System;
 
+
 namespace MyPortfolioUdemy.DAL.Context
+
 {
     public class MyPortfolioContext : DbContext
     {
