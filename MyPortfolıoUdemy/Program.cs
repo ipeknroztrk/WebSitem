@@ -1,12 +1,12 @@
 using Microsoft.EntityFrameworkCore;
-using MyPortfolioUdemy.DAL.Context;  // DOĞRU
+using MyPortfolıoUdemy.DAL.Context;  // DOĞRU
 using Npgsql;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 // DATABASE_URL varsa onu kullan, yoksa local bağlantıyı kullan
-builder.Services.AddDbContext<MyPortfolioContext>(options =>
+builder.Services.AddDbContext<MyPortfolıoContext>(options =>
 {
     var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
 
